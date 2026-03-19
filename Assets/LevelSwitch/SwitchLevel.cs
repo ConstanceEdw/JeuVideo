@@ -3,6 +3,7 @@ using UnityEngine;
 public class SwitchLevel : MonoBehaviour
 {
     public GameObject[] LevelList;
+    public GameObject[] positions;
     int ActiveLevel= 0;
     public GameObject endgame;
    
@@ -22,6 +23,7 @@ public class SwitchLevel : MonoBehaviour
                 LevelList[ActiveLevel].SetActive(false);
                 ActiveLevel++;
                 LevelList[ActiveLevel].SetActive(true);
+                gameObject.transform.position = positions[ActiveLevel].transform.position;
                 Debug.Log(ActiveLevel);
                 Debug.Log(LevelList.Length+" levelList");
             }
