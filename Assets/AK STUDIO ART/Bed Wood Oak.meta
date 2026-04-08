@@ -1,7 +1,12 @@
 fileFormatVersion: 2
+<<<<<<<< Updated upstream:Assets/AK STUDIO ART/Bed Wood Oak.meta
 guid: 61155ba5bdfac4f478a4ec248675d44a
 folderAsset: yes
 DefaultImporter:
+========
+guid: 17935c810bab2cf459f498defd29f2b3
+PrefabImporter:
+>>>>>>>> Stashed changes:Assets/QA_Books/Prefabs/Book_58.prefab.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
