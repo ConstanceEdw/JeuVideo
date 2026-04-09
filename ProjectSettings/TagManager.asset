@@ -7,6 +7,9 @@ TagManager:
   - Trigger 1
   - Spawn 1
   - Platform
+  - CinemachineTarget
+  - ItemPick
+  - Change
   layers:
   - Default
   - TransparentFX
