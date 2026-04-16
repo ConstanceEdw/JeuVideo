@@ -3,10 +3,11 @@ using UnityEngine;
 public class PlayerCollect : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public GameObject SwithCube;
-    public GameObject[] Visuals;
     Collider Delete;
     int Counter = 0;
+    public GameObject[] LevelList;
+    int ActiveLevel= 0;
+    public GameObject endgame;
     // Update is called once per frame
     void Start()
     {
@@ -18,7 +19,7 @@ public class PlayerCollect : MonoBehaviour
     
         if (Counter == 2)
             {
-                SwithCube.SetActive(true);
+                NextLevel();
                 Counter = 0;
             }
 
@@ -34,6 +35,19 @@ public class PlayerCollect : MonoBehaviour
                         Destroy(Delete);
                         Counter += 1;
                     }
+            }
+        }
+    private void NextLevel()
+        {
+            if (ActiveLevel+1< LevelList.Length)
+                    {
+                        LevelList[ActiveLevel].SetActive(false);
+                        ActiveLevel++;
+                        LevelList[ActiveLevel].SetActive(true);
+                    }
+            else 
+            {
+                endgame.SetActive(true);
             }
         }
 }
