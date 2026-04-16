@@ -5,7 +5,7 @@ public class PlayerCollect : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public GameObject SwithCube;
     public GameObject[] Visuals;
-    GameObject Delete;
+    Collider Delete;
     int Counter = 0;
     // Update is called once per frame
     void Start()
@@ -15,32 +15,25 @@ public class PlayerCollect : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+    
+        if (Counter == 2)
             {
-                if (Counter == 1)
+                SwithCube.SetActive(true);
+                Counter = 0;
+            }
+
+    }
+     private void OnTriggerStay(Collider other)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                if (other.gameObject.tag == "ItemPick")
                     {
-                    
-                    SwithCube.SetActive(true);
-                    Destroy(Delete);
-                    Counter = 0;
+                       
+                        Delete = other;
+                        Destroy(Delete);
+                        Counter += 1;
                     }
             }
-    }
-     private void OnTriggerEnter(Collider other)
-        {
-            if (other.gameObject.tag == "ItemPick")
-                {
-                 Delete = other.gameObject;
-                 Counter++;
-                }
-
-        }
-
-        private void OnTriggerExit(Collider other)
-        {
-            if (other.gameObject.tag == "ItemPick")
-                {
-                Counter = 0;
-                }
         }
 }
