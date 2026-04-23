@@ -29,7 +29,11 @@ public class SwitchLevel : MonoBehaviour
             }
             else 
             {
+            if(endgame != null)
+            {
                 endgame.SetActive(true);
+            }
+
             }
            
 
