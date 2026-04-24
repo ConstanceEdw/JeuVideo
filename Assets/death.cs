@@ -27,30 +27,62 @@ public class death : MonoBehaviour
         }
     public GameObject true_player;
     public GameObject menu;
-    public GameObject image_1;
     public void play()
     {
-        true_player.SetActive(true);
-        menu.SetActive(false);
-        image_1.SetActive(false);
-
+        camera_update();
     }
         public Image displayImage;   // Drag your UI Image here from the Hierarchy
         public Sprite[] imageArray; // Array to hold your sprites
         private int currentIndex = 0;
+
 
         public void NextImage()
         {
             // Cycle to the next index and wrap back to 0 if at the end
             currentIndex = (currentIndex + 1) % imageArray.Length;
             UpdateDisplay();
+
+        }
+        public void PreviousImage()
+        {
+            if (currentIndex!=0)
+            {
+                currentIndex = (currentIndex - 1) % imageArray.Length;
+                UpdateDisplay();
+            }
+        }
+        void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                camera_update();
+            }
         }
 
         void UpdateDisplay()
         {
             if (imageArray.Length > 0)
             {
-                displayImage.sprite = imageArray[currentIndex];
+                if ((currentIndex % imageArray.Length)==3)
+                {
+                    camera_update();
+                }
+                    displayImage.sprite = imageArray[currentIndex];
+            }
+        }
+        private int camera_level=0;
+        void camera_update()
+        {
+            camera_level+=1;
+            if (camera_level%2==0)
+            {
+                true_player.SetActive(false);
+                menu.SetActive(true);
+            }
+            else
+            {
+                true_player.SetActive(true);
+                menu.SetActive(false);
             }
         }
 
