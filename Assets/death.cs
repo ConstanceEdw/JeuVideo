@@ -67,7 +67,7 @@ public class death : MonoBehaviour
                 {
                     camera_update();
                 }
-                    displayImage.sprite = imageArray[currentIndex];
+                displayImage.sprite = imageArray[currentIndex];
             }
         }
         private int camera_level=0;
