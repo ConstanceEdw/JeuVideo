@@ -11,9 +11,7 @@ public class death : MonoBehaviour
             {
                 if (other.gameObject.tag == "player")
                     {
-
-                        Delete = other;
-                        Destroy(Delete);
+                        death_screen();
                     }
             }
         }
@@ -27,6 +25,9 @@ public class death : MonoBehaviour
         }
     public GameObject true_player;
     public GameObject menu;
+    public GameObject previous;
+    public GameObject next;
+    private bool started=false;
     public void play()
     {
         camera_update();
@@ -55,7 +56,10 @@ public class death : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                camera_update();
+                if (started==true)
+                {
+                    camera_update();
+                }
             }
         }
 
@@ -65,14 +69,24 @@ public class death : MonoBehaviour
             {
                 if ((currentIndex % imageArray.Length)==3)
                 {
+                    started=true;
                     camera_update();
                 }
                 displayImage.sprite = imageArray[currentIndex];
+                if (currentIndex>0)
+                {
+                    previous.SetActive(true);
+                }
+                else
+                {
+                    previous.SetActive(false);
+                }
             }
         }
         private int camera_level=0;
         void camera_update()
         {
+            Debug.Log(started);
             camera_level+=1;
             if (camera_level%2==0)
             {
@@ -85,5 +99,12 @@ public class death : MonoBehaviour
                 menu.SetActive(false);
             }
         }
+        void death_screen()
+        {
+            camera_level=imageArray.Length-1;
+            UpdateDisplay();
+            camera_update();
 
+
+        }
 }
