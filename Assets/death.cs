@@ -3,24 +3,35 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class death : MonoBehaviour
 {
+    public GameObject use;
+    private bool inTrigger;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     Collider Delete;
+    private void OnTriggerExit(Collider other)
+    {
+        Debug.Log("left");
+        use.SetActive(false);
+        inTrigger=false;
+    }
     private void OnTriggerStay(Collider other)
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                if (other.gameObject.tag == "player")
+                Debug.Log("Supposed to die soon");
+                if (other.gameObject.tag == "Player")
                     {
+                        Debug.Log("Supposed to die");
                         death_screen();
                     }
             }
         }
     private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.tag == "player")
+            Debug.Log("in zone");
+            use.SetActive(true);
+            if (other.CompareTag("Player"))
             {
-                Delete = other;
-                Destroy(Delete);
+                inTrigger = true;
             }
         }
     public GameObject true_player;
@@ -54,6 +65,10 @@ public class death : MonoBehaviour
         }
         void Update()
         {
+            if (inTrigger && Input.GetKeyDown(KeyCode.E))
+            {
+                death_screen();
+            }
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 if (started==true)
@@ -101,9 +116,12 @@ public class death : MonoBehaviour
         }
         void death_screen()
         {
-            camera_level=imageArray.Length-1;
+            currentIndex=(imageArray.Length-1);
             UpdateDisplay();
             camera_update();
+            next.SetActive(false);
+            previous.SetActive(false);
+            this.enabled=false;
 
 
         }
