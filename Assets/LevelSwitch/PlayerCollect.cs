@@ -6,7 +6,7 @@ public class PlayerCollect : MonoBehaviour
     Collider Delete;
     int Counter = 0;
     public GameObject[] LevelList;
-    int ActiveLevel= 0;
+    public int ActiveLevel= 0;
     public GameObject endgame;
     // Update is called once per frame
     void Start()
