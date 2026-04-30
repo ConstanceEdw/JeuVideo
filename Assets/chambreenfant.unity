@@ -330,19 +330,31 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1428552782855908623, guid: 1782f89c020824c188d8b7ab849c0390, type: 3}
       propertyPath: m_Name
-      value: chambre__enfant (1)
+      value: Chambre enfant GOOD COPY
+      objectReference: {fileID: 0}
+    - target: {fileID: 7498958078503597841, guid: 1782f89c020824c188d8b7ab849c0390, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5475318
+      objectReference: {fileID: 0}
+    - target: {fileID: 7498958078503597841, guid: 1782f89c020824c188d8b7ab849c0390, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5475318
+      objectReference: {fileID: 0}
+    - target: {fileID: 7498958078503597841, guid: 1782f89c020824c188d8b7ab849c0390, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5475318
       objectReference: {fileID: 0}
     - target: {fileID: 7498958078503597841, guid: 1782f89c020824c188d8b7ab849c0390, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.92133
+      value: -30.448
       objectReference: {fileID: 0}
     - target: {fileID: 7498958078503597841, guid: 1782f89c020824c188d8b7ab849c0390, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 46.60133
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 7498958078503597841, guid: 1782f89c020824c188d8b7ab849c0390, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 50.0025
+      value: -9.5994
       objectReference: {fileID: 0}
     - target: {fileID: 7498958078503597841, guid: 1782f89c020824c188d8b7ab849c0390, type: 3}
       propertyPath: m_LocalRotation.w
