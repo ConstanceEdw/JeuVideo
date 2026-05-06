@@ -332,10 +332,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chambre enfant GOOD COPY
       objectReference: {fileID: 0}
-    - target: {fileID: 1428552782855908623, guid: 1782f89c020824c188d8b7ab849c0390, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7498958078503597841, guid: 1782f89c020824c188d8b7ab849c0390, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.5475318
