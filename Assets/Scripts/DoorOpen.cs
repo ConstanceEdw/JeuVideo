@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class DoorOpen : MonoBehaviour
 {
-bool IsDoorOpen = false;
 public GameObject Door;
 
     void Start()
