@@ -1,0 +1,92 @@
+using UnityEngine;
+using UnityEngine.UI;
+
+public class DeathManager : MonoBehaviour
+{
+    public GameObject true_player;
+    public GameObject menu;
+    public GameObject previous;
+    public GameObject next;
+    public Image displayImage;
+    public Sprite[] imageArray;
+    private PlayerCollect target;
+    public GameObject play;
+    private int level;
+
+    void Start()
+    {
+        target = true_player.GetComponent<PlayerCollect>();
+        level = target.ActiveLevel;
+    }
+    private int currentIndex = 0;
+    private int camera_level = 0;
+    private bool started = false;
+
+    public void DeathScreen()
+    {
+        Debug.Log("you died");
+        currentIndex = imageArray.Length - 1;
+        UpdateDisplay();
+        CameraUpdate();
+        next.SetActive(false);
+        previous.SetActive(false);
+        this.enabled=false;
+    }
+
+    public void NextImage()
+    {
+        Debug.Log("NEXT CLICKED");
+        currentIndex = (currentIndex + 1) % imageArray.Length;
+        UpdateDisplay();
+    }
+    public void Play()
+    {
+        started=true;
+        CameraUpdate();
+    }
+    public void PreviousImage()
+    {
+        if (currentIndex > 0)
+        {
+            currentIndex--;
+            UpdateDisplay();
+        }
+    }
+private void Update()
+    {
+        int level = target.ActiveLevel;
+        if (Input.GetKeyDown(KeyCode.P) && started)
+        {
+            CameraUpdate();
+        }
+    }
+
+    void UpdateDisplay()
+    {
+        if (imageArray.Length == 0) return;
+        displayImage.sprite = imageArray[currentIndex];
+        previous.SetActive(currentIndex > 0);
+        next.SetActive(currentIndex < level+2);
+        play.SetActive(currentIndex == level+2);
+    }
+
+    void CameraUpdate()
+    {
+        camera_level++;
+
+        if (camera_level % 2 == 0)
+        {
+            true_player.SetActive(false);
+            menu.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+        else
+        {
+            true_player.SetActive(true);
+            menu.SetActive(false);
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+    }
+}
