@@ -8,6 +8,10 @@ TagManager:
   - Spawn 1
   - Platform
   - objectif
+  - ItemPick
+  - CinemachineTarget
+  - Door_Gone
+  - ItemPickDoor
   layers:
   - Default
   - TransparentFX
