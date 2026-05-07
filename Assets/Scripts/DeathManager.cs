@@ -10,6 +10,7 @@ public class DeathManager : MonoBehaviour
     public Image displayImage;
     public Sprite[] imageArray;
     private PlayerCollect target;
+    public GameObject play;
     private int level;
 
     void Start()
@@ -23,6 +24,7 @@ public class DeathManager : MonoBehaviour
 
     public void DeathScreen()
     {
+        Debug.Log("you died");
         currentIndex = imageArray.Length - 1;
         UpdateDisplay();
         CameraUpdate();
@@ -31,18 +33,17 @@ public class DeathManager : MonoBehaviour
         this.enabled=false;
     }
 
-    public void play()
-    {
-        CameraUpdate();
-    }
-
     public void NextImage()
     {
         Debug.Log("NEXT CLICKED");
         currentIndex = (currentIndex + 1) % imageArray.Length;
         UpdateDisplay();
     }
-
+    public void Play()
+    {
+        started=true;
+        CameraUpdate();
+    }
     public void PreviousImage()
     {
         if (currentIndex > 0)
@@ -54,7 +55,7 @@ public class DeathManager : MonoBehaviour
 private void Update()
     {
         int level = target.ActiveLevel;
-        if (Input.GetKeyDown(KeyCode.Escape) && started)
+        if (Input.GetKeyDown(KeyCode.P) && started)
         {
             CameraUpdate();
         }
@@ -63,14 +64,10 @@ private void Update()
     void UpdateDisplay()
     {
         if (imageArray.Length == 0) return;
-        CameraUpdate();
-        if (currentIndex == 3)
-        {
-            started = true;
-        }
-
         displayImage.sprite = imageArray[currentIndex];
         previous.SetActive(currentIndex > 0);
+        next.SetActive(currentIndex < level+2);
+        play.SetActive(currentIndex == level+2);
     }
 
     void CameraUpdate()
@@ -81,11 +78,15 @@ private void Update()
         {
             true_player.SetActive(false);
             menu.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
         else
         {
             true_player.SetActive(true);
             menu.SetActive(false);
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
     }
 }
