@@ -38,6 +38,7 @@ public class DeathManager : MonoBehaviour
 
     public void NextImage()
     {
+        Debug.Log("NEXT CLICKED");
         currentIndex = (currentIndex + 1) % imageArray.Length;
         UpdateDisplay();
     }
