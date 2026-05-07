@@ -12,6 +12,8 @@ public class DeathManager : MonoBehaviour
     private PlayerCollect target;
     public GameObject play;
     private int level;
+    private int counter=1;
+
 
     void Start()
     {
@@ -53,8 +55,16 @@ public class DeathManager : MonoBehaviour
         }
     }
 private void Update()
-    {
-        int level = target.ActiveLevel;
+{
+        level = target.ActiveLevel;
+        Debug.Log(level+2);
+        if (level==counter)
+        {
+            Debug.Log("level counter checker");
+            counter++;
+            NextImage();
+            CameraUpdate();
+        }
         if (Input.GetKeyDown(KeyCode.P) && started)
         {
             CameraUpdate();
@@ -66,8 +76,9 @@ private void Update()
         if (imageArray.Length == 0) return;
         displayImage.sprite = imageArray[currentIndex];
         previous.SetActive(currentIndex > 0);
-        next.SetActive(currentIndex < level+2);
-        play.SetActive(currentIndex == level+2);
+        next.SetActive(currentIndex < (level+2));
+        play.SetActive(currentIndex == (level+2));
+        Debug.Log(currentIndex);
     }
 
     void CameraUpdate()
