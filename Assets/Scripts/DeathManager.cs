@@ -9,7 +9,14 @@ public class DeathManager : MonoBehaviour
     public GameObject next;
     public Image displayImage;
     public Sprite[] imageArray;
+    private PlayerCollect target;
+    private int level;
 
+    void Start()
+    {
+        target = true_player.GetComponent<PlayerCollect>();
+        level = target.ActiveLevel;
+    }
     private int currentIndex = 0;
     private int camera_level = 0;
     private bool started = false;
@@ -31,6 +38,7 @@ public class DeathManager : MonoBehaviour
 
     public void NextImage()
     {
+        Debug.Log("NEXT CLICKED");
         currentIndex = (currentIndex + 1) % imageArray.Length;
         UpdateDisplay();
     }
@@ -45,6 +53,7 @@ public class DeathManager : MonoBehaviour
     }
 private void Update()
     {
+        int level = target.ActiveLevel;
         if (Input.GetKeyDown(KeyCode.Escape) && started)
         {
             CameraUpdate();
@@ -54,11 +63,10 @@ private void Update()
     void UpdateDisplay()
     {
         if (imageArray.Length == 0) return;
-
+        CameraUpdate();
         if (currentIndex == 3)
         {
             started = true;
-            CameraUpdate();
         }
 
         displayImage.sprite = imageArray[currentIndex];
